@@ -5,12 +5,14 @@ import {
   StyleSheet
 } from 'react-native'
 import ListMessages from './ListMessages'
+import AddMessage from './AddMessage'
 
 class MessageBox extends Component {
   render(){
   	return(
       <View>
         <Text style={styles.heading}>My Message Board</Text>
+        <AddMessage />
         <ListMessages />
       </View>
   	)

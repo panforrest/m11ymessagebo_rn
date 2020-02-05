@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   	flexDirection: 'row'
   },
   messageText: {
-    color: 'grey',
+    color: 'blue',
     fontWeight: '100'
   }
 })

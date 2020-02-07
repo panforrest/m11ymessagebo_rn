@@ -5,6 +5,8 @@ import {
 } from 'react-native'
 import { APIManager } from '../utils'
 import MessageRow from './MessageRow'
+import actions from '../redux/actions'
+import { connect } from 'react-redux'
 
 class ListMessages extends Component {
   constructor(props){
@@ -27,6 +29,7 @@ class ListMessages extends Component {
   	  this.setState({
   	  	messages: results
   	  })
+      this.props.messagesReceived(results)
   	})
   }
 
@@ -34,7 +37,7 @@ class ListMessages extends Component {
   	return(
       <FlatList
         data = {
-          this.state.messages.map((message, index) => {
+          this.props.messages.map((message, index) => {
             return (
               message
             )
@@ -51,4 +54,16 @@ class ListMessages extends Component {
   }
 }
 
-export default ListMessages
+const stateToProps = (state) => {
+  return {
+    messages: state.message.list
+  }
+}
+
+const dispatchToProps = (dispatch) => {
+  return {
+    messagesReceived: (messages) => dispatch(actions.messagesReceived(messages))
+  }
+}
+
+export default connect(stateToProps, dispatchToProps)(ListMessages)
